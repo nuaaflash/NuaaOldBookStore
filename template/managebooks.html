@@ -1,0 +1,114 @@
+{% extends "index_all.html" %}
+{% block title %}书籍管理{% endblock %}
+{% block content %} 
+<div class="header"></div>
+<div class="content search-wrapper">
+
+    <div class="buttons">
+        {% load staticfiles %}
+        <button class="btn Lable" id="add-a-book"><img src="{% static 'img/icons/add.png' %}" class="Icon">增加</button>
+    </div>
+    <table>
+        <tr class="head">
+            <td>ISBN</td>
+            <td>书名</td>
+            <td>价格</td>
+            <td>页数</td>
+            <td>语言</td>
+            <td>库存</td>
+            <td>出版商</td>
+            <td>出版日期</td>
+        </tr>
+        {% if all_books %}
+        <tr class="content">
+            <td></td><td></td><td></td>
+            <td>无数据</td>
+            <td></td><td></td><td></td>
+        </tr>
+        {% endif %}
+        {% for book in all_books %}
+        <tr class="content">
+            <td>{{ book.name }}</td>
+            <td>{{ book.name }}</td>
+            <td>{{ book.name }}</td>
+            <td>{{ book.name }}</td>
+            <td>
+                <label>
+                    <input type="checkbox" ng-checked="worker.done" ng-click="donef($index)">
+                </label>
+            </td>
+            <td ng-bind="worker.review"></td>
+            <td><div class="delete" ng-click="dele($index)">删除</div></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="bottoms">
+        <div class="pagetag pagelabel">1</div>
+        <div class="lines-of-page">10行/页</div>
+        <div class="this-page-line">本页为0~0条记录，总记录0条</div>
+    </div>
+    <div class="back" id="backgroud_popup"></div>
+
+    <div class="pop" id="popup">
+    <table class="popuptable">
+        <tr class="popupline">
+            <td class="popupcell">
+                <label>书名:
+                    <input type="text" ng-model="worker_id"/>
+                </label>
+            </td>
+            <td class="popupcell">
+                <label>ISBN:
+                    <input type="text" ng-model="job"/>
+                </label>
+            </td>
+            <td class="popupcell">
+                <label>价格:
+                    <input type="text" ng-model="job"/>
+                </label>
+            </td>
+        </tr>
+        <tr class="popupline">
+            <td class="popupcell">
+                <label>页数:
+                    <input type="text" ng-checked="done" ng-click="doneInit()">
+                </label>
+            </td>
+            <td class="popupcell">
+                <label>语言:
+                    <input type="text" ng-checked="done" ng-click="doneInit()">
+                </label>
+            </td>
+            <td class="popupcell">
+                <label>库存:
+                    <input type="text" ng-checked="done" ng-click="doneInit()">
+                </label>
+            </td>
+        </tr>
+        <tr class="popupline">
+            <td class="popupcell">
+                <label>出版商:
+                    <input type="text" ng-checked="done" ng-click="doneInit()">
+                </label>
+            </td>
+            <td class="popupcell">
+                <label>出版日期:
+                    <input type="date">
+                </label>
+            </td>
+            <td class="popupcell">
+                <label>
+                    <button id="comfire-add-a-book">提交</button>
+                </label>
+                <label>
+                    <button id="cancle-add-a-book">关闭</button>
+                </label>
+            </td>
+        </tr>
+    </table>
+    </div>
+    {% load staticfiles %}
+    <script src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
+    <script src="{% static "js/control/pages.js" %}"></script>
+</div>
+{% endblock %}

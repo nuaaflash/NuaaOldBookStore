@@ -1,0 +1,157 @@
+.back{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background-color:#000;
+    display:none;
+    filter:alpha(Opacity=80);-moz-opacity:0.5;opacity: 0.5;
+    z-Index:999;
+}
+
+.pop{
+    position:absolute;
+    width:800px;
+    height:500px;
+    top:25%;
+    left:25%;
+    background-color:#FFF;
+    display:none;
+    cursor:pointer;
+    z-Index:9999;
+}
+
+table{
+    float:top;
+    margin-top: 64px;
+    margin-left: 64px;
+}
+
+table.popuptable{
+    margin : 10%;
+    width: 50%;
+    height: 60%;
+}
+
+tr.head{
+	width: 1075px;
+	height: 38px;
+	background-color: #c1c9cf;
+}
+
+tr.weeklyManager > td{
+    width: 144px;
+    text-align:center;
+}
+
+tr.content {
+	width: 1075px;
+	height: 38px;
+	background-color: #ffffff;
+}
+
+tr.popupline{
+}
+
+td{
+    width: 162px;
+    text-align:center;
+}
+
+td.popupcell{
+    width: 300px
+}
+
+.btn{
+    width: 90px;
+	height: 28px;
+	background-color: #2a3245;
+	box-shadow: 0px 10px 15px 0px
+		rgba(86, 111, 140, 0.3);
+	border-radius: 14px;
+    child-align: middle;
+    float: right;
+}
+
+.Lable{
+	font-family: zcoolwenyiti;
+	font-size: 14px;
+	color: #ffffff;
+}
+
+.Icon{
+	width: 9px;
+	height: 9px;
+    margin-right: 6px;
+}
+
+div.buttons{
+    float:top;
+    width:100%;
+    padding-top: 20px;
+}
+
+.pagetag{
+    width: 20px;
+	height: 22px;
+    border-radius: 5px;
+	background-color: #1596cf;
+    padding-left: 12px;
+    float: left;
+}
+
+.pagelabel{
+	font-family: MicrosoftYaHei;
+	font-size: 14px;
+	color: #ffffff;
+}
+
+.lines-of-page{
+	width: 66px;
+	height: 22px;
+	background-color: #f0f0f0;
+	border: solid 1px #e6e6e6;
+
+    font-family: MicrosoftYaHei;
+	font-size: 14px;
+	color: #99928f;
+
+    float: left;
+    margin-left: 6px;
+
+    padding-left: 16px;
+}
+
+.this-page-line{
+	width: 169px;
+	height: 13px;
+	font-family: MicrosoftYaHei;
+	font-size: 12px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 16px;
+	letter-spacing: 0px;
+	color: #99928f;
+
+    float:left;
+    margin-left: 6px;
+
+    padding-left: 16px;
+}
+
+div.delete{
+	width: 25px;
+	height: 12px;
+	font-family: MicrosoftYaHei;
+	font-size: 12px;
+	color: #ff0000;
+    margin-left: 12px;
+}
+
+div.bottoms{
+    float:top;
+    width: 100%;
+    margin-top: 12px;
+    margin-left: 64px;
+}

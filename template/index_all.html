@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{% block title %}{% endblock %}</title>
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static "bower_components/bootstrap/dist/css/bootstrap.min.css" %}">
+<link rel="stylesheet" href="{% static "bower_components/pure/pure-min.css" %}">
+<link rel="stylesheet" href="{% static "bower_components/font-awesome/css/font-awesome.min.css" %}">
+<link rel="stylesheet" href="{% static "layout/side-menu.css" %}">
+<link rel="stylesheet" href="{% static "layout/docs.min.css" %}">
+<link rel="stylesheet" href="{% static "style/style.css" %}">
+<link rel="stylesheet" href="{% static "style/app.css" %}">
+<link rel="stylesheet" href="{% static "style/table.css" %}">
+<script src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
+<script src="{% static "bower_components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+</head>
+<body>
+<div class="topbar">
+    <span class="topbartitle">南航网上旧书店</span>
+    {% load staticfiles %}
+    <img src="{% static 'img/icons/down.png' %}" class="avatar-down"/>
+    <img src="{% static 'img/icons/xh.jpg' %}" class="avatar"/>
+    <div class="user-status"></div>
+    <div class="separator"></div>
+    <button class="border-btn btn-text">用户<img src="{% static 'img/icons/down.png' %}" class="btn-icon"/></button>
+</div>
+<div class="searchbar">
+    {% load staticfiles %}
+    <button class="s-icon" type="submit"><img src="{% static 'img/icons/search.png' %}"/></button>
+    
+    <input type="text" name="q" placeholder="查找书籍" class="searchinput" value="{{ last_content }}">
+</div>
+<div class="main-content">
+        {% load side_bar %}
+        <div class="sidebar">
+            {% load staticfiles %}
+            <div id="bookStorage" class="{% selectSideButton request 'search' %} selectButton">
+                <img src="{% static 'img/icons/manager.png' %}" class="sidebarIcon">
+                <a href="/search/" class="{% selectSideLabel request 'search' %}">书库</a>
+            </div>
+            <div id="aboutMe" class="{% selectSideButton request 'accounts' %} selectButton">
+                <img src="{% static 'img/icons/mine.png' %}" class="sidebarIcon">
+                <a href="/accounts/" class="{% selectSideLabel request 'accounts' %}">用户中心</a>
+            </div>
+            <div id="shopCart" class="{% selectSideButton request 'shopping_cart' %} selectButton">
+                <img src="{% static 'img/icons/aboutme.png' %}" class="sidebarIcon">
+                <a href="/shopping_cart/" class="{% selectSideLabel request 'shopping_cart' %}">购物车
+                    <span class="m-badge">{{ request.user.shop_cart.all | length }}</span>
+                </a>
+            </div>
+            <div id="manageBooks" class="{% selectSideButton request 'admin' %} selectButton">
+                <img src="{% static 'img/icons/aboutme.png' %}" class="sidebarIcon">
+                <a href="/admin/" class="{% selectSideLabel request 'admin' %}">管理书籍</a>
+            </div>
+            <div id="aboutUs" class="{% selectSideButton request 'help' % selectButton">
+                <img src="{% static 'img/icons/aboutme.png' %}" class="sidebarIcon">
+                <a href="/help/" class="{% selectSideLabel request 'help' %}">关于</a>
+            </div>
+                    
+        </div>
+        <div class="base"></div>
+        <div id="main" class="view">
+            {% block content %}{% endblock %}
+        </div>
+
+</div>
+{% load staticfiles %}
+<script src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
+<script src="{% static "js/control/pages.js" %}"></script>
+</html>
