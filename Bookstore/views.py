@@ -70,7 +70,15 @@ def account(request):
         return render(request, 'account.html', locals())
 
 def help(request):
-    return render(request, 'help.html')
+    keywords = request.GET.get('q', '')
+    if keywords:
+        if keywords == 'View all books':
+            books = Book.objects.all()
+        else:
+            books = Book.objects.filter(name__icontains=keywords)
+        return render(request, 'search.html', { 'last_content': keywords, 'all_books': books })
+    else:
+        return render(request, 'help.html')
 
 @login_required
 def manage_books(request):
@@ -78,28 +86,44 @@ def manage_books(request):
 
 @login_required
 def shopping_cart(request):
-    return render(request, 'shoppingcart.html')
+    keywords = request.GET.get('q', '')
+    if keywords:
+        if keywords == 'View all books':
+            books = Book.objects.all()
+        else:
+            books = Book.objects.filter(name__icontains=keywords)
+        return render(request, 'search.html', { 'last_content': keywords, 'all_books': books })
+    else:
+        return render(request, 'shoppingcart.html')
 
 @login_required
 def pay(request):
-    total_number = request.POST.get('book_total_number', '')
-    if total_number == '':
-        return HttpResponse('empty shop cart')
-    order_list = []
-    for it in xrange(int(total_number)):
-        book = {}
-        book['checked'] = request.POST.get('check' + str(it), 'not_checked')
-        book['number']  = request.POST.get('number' + str(it), '')
-        book['isbn']    = request.POST.get('book' + str(it), '')
-        order_list.append(book)
-    order = Order(state='p', aid=request.user, date=timezone.now())
-    order.save()
-    for item in order_list:
-        if item['checked'] != 'not_checked':
-            book = Book.objects.get(isbn=item['isbn'])
-            OrderBookRelation.objects.create(oid=order, bid=book, number_of_book=item['number'])
-    request.user.shop_cart.clear()
-    return HttpResponseRedirect('/accounts/')
+    keywords = request.GET.get('q', '')
+    if keywords:
+        if keywords == 'View all books':
+            books = Book.objects.all()
+        else:
+            books = Book.objects.filter(name__icontains=keywords)
+        return render(request, 'search.html', { 'last_content': keywords, 'all_books': books })
+    else:
+        total_number = request.POST.get('book_total_number', '')
+        if total_number == '':
+            return HttpResponse('empty shop cart')
+        order_list = []
+        for it in xrange(int(total_number)):
+            book = {}
+            book['checked'] = request.POST.get('check' + str(it), 'not_checked')
+            book['number']  = request.POST.get('number' + str(it), '')
+            book['isbn']    = request.POST.get('book' + str(it), '')
+            order_list.append(book)
+        order = Order(state='p', aid=request.user, date=timezone.now())
+        order.save()
+        for item in order_list:
+            if item['checked'] != 'not_checked':
+                book = Book.objects.get(isbn=item['isbn'])
+                OrderBookRelation.objects.create(oid=order, bid=book, number_of_book=item['number'])
+        request.user.shop_cart.clear()
+        return HttpResponseRedirect('/accounts/')
 
 def search_page(request):
     keywords = request.GET.get('q', '')
