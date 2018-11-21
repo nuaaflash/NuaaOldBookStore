@@ -56,10 +56,18 @@ def register(request):
 
 @login_required
 def account(request):
-    uncomplete_orders = request.user.order_set.filter(state='u')
-    complete_orders = request.user.order_set.filter(state='c')
-    processing_orders = request.user.order_set.filter(state='p')
-    return render(request, 'account.html', locals())
+    keywords = request.GET.get('q', '')
+    if keywords:
+        if keywords == 'View all books':
+            books = Book.objects.all()
+        else:
+            books = Book.objects.filter(name__icontains=keywords)
+        return render(request, 'search.html', { 'last_content': keywords, 'all_books': books })
+    else:
+        uncomplete_orders = request.user.order_set.filter(state='u')
+        complete_orders = request.user.order_set.filter(state='c')
+        processing_orders = request.user.order_set.filter(state='p')
+        return render(request, 'account.html', locals())
 
 def help(request):
     return render(request, 'help.html')

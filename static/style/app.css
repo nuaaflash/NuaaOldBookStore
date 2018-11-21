@@ -3,7 +3,8 @@ html,body{
     height: 100%;
     width: 100%;
     background-color: #f5f8fc;
-    overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 .topbar {
@@ -133,12 +134,13 @@ html,body{
 
 .main-content{
 	width:1000000px;
+	height:1000000px;
 }
 
 .sidebar {
     float:left;
 	width: 139px;
-	height: 624px;
+	height: 10000px;
 	background-color: #2a3245;
 }
 
@@ -185,12 +187,16 @@ html,body{
 .base {
     width: 100%;
 	background-color: #f5f8fc;
-	z-index: -1;
+	z-index: -111;
 }
 
 .view{
 	float:left;
-	width:1000px;
+}
+
+.sub-info{
+	width: 1200px;
+	height: 100%;
 }
 
 

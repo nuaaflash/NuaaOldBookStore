@@ -26,10 +26,11 @@
     <button class="border-btn btn-text">用户<img src="{% static 'img/icons/down.png' %}" class="btn-icon"/></button>
 </div>
 <div class="searchbar">
-    {% load staticfiles %}
-    <button class="s-icon" type="submit"><img src="{% static 'img/icons/search.png' %}"/></button>
-    
-    <input type="text" name="q" placeholder="查找书籍" class="searchinput" value="{{ last_content }}">
+    <form>
+            {% load staticfiles %}
+            <button class="s-icon" type="submit"><img src="{% static 'img/icons/search.png' %}"/></button>
+            <input type="text" name="q" placeholder="查找书籍" class="searchinput" value="View all books">
+    </form>
 </div>
 <div class="main-content">
         {% load side_bar %}

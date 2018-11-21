@@ -69,7 +69,10 @@ class Book(models.Model):
         :return:
         """
         books = self.related_books.all()
-        return random.sample(books, 2)
+        if(len(books) > 2):
+            return random.sample(books, 2)
+        else:
+            return books
 
 
 class Account(AbstractUser):
